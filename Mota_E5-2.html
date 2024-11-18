@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+    <p>Tell us your story:</p>
+    <textarea id="story" rows="4" cols="50">It was a dark and stormy night...</textarea>
+    <br>
+
+    <p>Find What:</p>
+    <input type="text" id="findText"><br><br>
+    <p>Replace with:</p>
+    <input type="text" id="replaceText"><br><br>
+    <button onclick="replaceNow()">Replace</button>
+    <button onclick="clearNow()">Clear</button>
+    <button onclick="changeCase()">Change Case</button>
+    <button onclick="searchText()">Search Text</button>
+    <button onclick="countCharacters()">Count Characters</button>
+    <p id="output"></p>
+
+    <script>
+        function replaceNow() {
+            let story = document.getElementById("story").value;
+            let findText = document.getElementById("findText").value;
+            let replaceText = document.getElementById("replaceText").value;
+            if (findText) {
+                document.getElementById("story").value = story.split(findText).join(replaceText);
+            }
+        }
+
+        function clearNow() {
+            document.getElementById("findText").value = "";
+            document.getElementById("replaceText").value = "";
+        }
+
+        function changeCase() {
+            let story = document.getElementById("story").value;
+            document.getElementById("story").value = 
+                story === story.toUpperCase() ? story.toLowerCase() : story.toUpperCase();
+        }
+
+        function searchText() {
+            let story = document.getElementById("story").value;
+            let findText = document.getElementById("findText").value;
+            let found = story.includes(findText);
+            document.getElementById("output").innerText = found ? `"${findText}" found!` : `"${findText}" not found.`;
+        }
+
+        function countCharacters() {
+            let story = document.getElementById("story").value;
+            document.getElementById("output").innerText = `Character count: ${story.length}`;
+        }
+    </script>
+
+</body>
+</html>
